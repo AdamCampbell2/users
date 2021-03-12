@@ -17,10 +17,10 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         User::factory()->count(20)->create();
-        DB::table('users')->insert([
-            'name'=> 'Adam Campbell',
-            'email'=>'tester@yahoo.com',
-            'password'=>Hash::make('password')
-            ]);
+        // DB::table('users')->insert([
+        //     'name'=> 'Adam Campbell',
+        //     'email'=>'tester@yahoo.com',
+        //     'password'=>Hash::make('password')
+        //     ]);
     }
 }
