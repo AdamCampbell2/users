@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
+use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -15,18 +16,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
-        return view('user.index',['user' => $users]);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view('user.create');
+        //$user = Auth::user()->User;
+        $user = User::all();
+        return $user;
     }
 
     /**
@@ -37,56 +29,61 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        $request['user_id'] = Auth::user()->id;
         $user = new User($request->all());
         $user->save();
-        return redirect('users')->with('status','User Saved!');
+        return response()->json([
+            "message" =>"User created"
+        ], 201);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
     public function show(User $user)
     {
-        return view('user.show',['user'=>$user]);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(User $user)
-    {
-        return view('user.edit',['user'=>$user]);
+        if($user->user_id == Auth::user()->id){
+            return $user;
+        }
+        abort(403);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, User $user)
     {
-        $user->update($request->all());
-        return back()->with('status','User Updated!');
+        if($user->user_id == Auth::user()->id){
+            $user->update($request->all());
+            return response()->json([
+                "message" =>"User updated"
+            ], 200);
+        }
+        abort(403);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
     public function destroy(User $user)
     {
-        $user->delete();
-        return response(['msg' => 'Success'],
-        200)->header('Content-Type','application/json');
+        if($user->user_id == Auth::user()->id){
+            $user->delete();
+            return response()->json([
+                "message" =>"User deleted"
+            ], 202);
+        }
+        abort(403);
     }
+    
 }
