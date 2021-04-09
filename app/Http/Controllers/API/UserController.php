@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Resources\UserResource;
+use App\Http\Resources\UsersResource;
 
 class UserController extends Controller
 {
@@ -17,8 +19,10 @@ class UserController extends Controller
     public function index()
     {
         //$user = Auth::user()->User;
-        $user = User::all();
-        return $user;
+        //$users = User::all();
+        //return $user;
+       return new UsersResource(Auth::user()->users);
+        
     }
 
     /**
@@ -45,8 +49,8 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        if($user->user_id == Auth::user()->id){
-            return $user;
+        if($user->created_by == Auth::user()->id){
+            return new UserResource($user);
         }
         abort(403);
     }
