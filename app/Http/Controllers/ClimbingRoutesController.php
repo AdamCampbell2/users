@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-
-use App\Models\User;
+use App\Models\ClimbingRoutes;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class UserController extends Controller
+class ClimbingRoutesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +14,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        //$users = User::all();
-        //return view('user.index',['user' => $users]);
+        $routes = ClimbingRoutes::all();
+        return response()->json($routes);
     }
 
     /**
@@ -27,7 +25,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('user.create');
+        //
     }
 
     /**
@@ -38,56 +36,51 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $user = new User($request->all());
-        $user->save();
-        return redirect('users')->with('status','User Saved!');
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\ClimbingRoutes  $climbingRoutes
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show(ClimbingRoutes $climbingRoutes)
     {
-        return view('user.show',['user'=>$user]);
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\ClimbingRoutes  $climbingRoutes
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit(ClimbingRoutes $climbingRoutes)
     {
-        return view('user.edit',['user'=>$user]);
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\ClimbingRoutes  $climbingRoutes
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, ClimbingRoutes $climbingRoutes)
     {
-        $user->update($request->all());
-        return back()->with('status','User Updated!');
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\ClimbingRoutes  $climbingRoutes
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy(ClimbingRoutes $climbingRoutes)
     {
-        $user->delete();
-        return response(['msg' => 'Success'],
-        200)->header('Content-Type','application/json');
+        //
     }
 }
