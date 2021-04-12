@@ -32,7 +32,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
 });
 
 Route::apiResource('v1/routes', ApiClimbingRoutes::class);
-
+Route::get('v1/laps/{id}', 'ClimbAMileController@getUserLaps');
 
 
 

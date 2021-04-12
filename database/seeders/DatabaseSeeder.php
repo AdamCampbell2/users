@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\ClimbAMile;
 use App\Models\ClimbingRoutes;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -19,5 +20,6 @@ class DatabaseSeeder extends Seeder
     {
         User::factory()->count(20)->create();
         ClimbingRoutes::factory()->count(20)->create();
+        ClimbAMile::factory()->count(3)->create();
     }
 }
