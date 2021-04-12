@@ -10,12 +10,12 @@ class ClimbAMileController extends Controller
 {
     public function index(){
 
-        $laps = ClimbAMile::getUserLaps();
-        return $laps;
+         $laps = ClimbAMile::all();
+         return $laps;
 
     }
 
-    public function getUserLaps($id) {
+    public function show($id) {
         if(ClimbAMile::where('user_id', $id)->exits()){
             $user = ClimbAMile::where('user_id',$id)->get()->toJson(JSON_PRETTY_PRINT);
             return response($user, 200);

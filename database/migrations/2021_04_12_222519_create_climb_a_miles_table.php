@@ -15,7 +15,11 @@ class CreateClimbAMilesTable extends Migration
     {
         Schema::create('climb_a_miles', function (Blueprint $table) {
             $table->id();
+<<<<<<< HEAD
             $table->foreign('user_id');
+=======
+            $table->integer('user_id');
+>>>>>>> Devolpment
             $table->string('laps')->nullable();
             $table->timestamps();
         });
