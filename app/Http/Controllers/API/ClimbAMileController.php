@@ -10,8 +10,8 @@ class ClimbAMileController extends Controller
 {
     public function index(){
 
-        // $laps = ClimbingRoutes::all();
-        // return $routes;
+        $laps = ClimbAMile::getUserLaps();
+        return $laps;
 
     }
 

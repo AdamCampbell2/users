@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\ClimbAMileController;
 use App\Models\User;
 use App\Models\ClimbingRoutes;
 use Illuminate\Http\Request;
@@ -8,6 +9,7 @@ use Laravel\Ui\Presets\React;
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\ApiClimbingRouteController;
 use App\Http\Controllers\ApiClimbingRoutes;
+use App\Models\ClimbAMile;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,7 +34,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
 });
 
 Route::apiResource('v1/routes', ApiClimbingRoutes::class);
-Route::apiResource('v1/laps/{1}', ClimbAMile::class);
+Route::apiResource('v1/laps/{id}', ClimbAMileController::class);
+Route::apiResource('v1/laps', ClimbAMile::class);
 
 
 
