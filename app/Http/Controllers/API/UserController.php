@@ -25,11 +25,6 @@ class UserController extends Controller
         
     }
 
-    public function returnAll(){
-        $users = User::all();
-        return $users;
-    }
-
     /**
      * Store a newly created resource in storage.
      *

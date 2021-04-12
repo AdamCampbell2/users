@@ -32,6 +32,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
 });
 
 Route::apiResource('v1/routes', ApiClimbingRoutes::class);
+Route::apiResource('v1/user', UserController::class);
 
 
 
