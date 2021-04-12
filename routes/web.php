@@ -24,5 +24,5 @@ Auth::routes();
 Route::middleware(['auth:sanctum'])->group(function (){
     
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-    Route::resource('users', UserController::class);
+    Route::resource('/users', UserController::class);
 });
