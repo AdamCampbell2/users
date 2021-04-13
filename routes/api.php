@@ -34,13 +34,9 @@ Route::middleware(['auth:sanctum'])->group(function () {
 });
 
 Route::apiResource('v1/routes', ApiClimbingRoutes::class);
-<<<<<<< HEAD
 Route::apiResource('v1/laps/{id}', ClimbAMileController::class);
 Route::apiResource('v1/laps', ClimbAMile::class);
 
-=======
-Route::apiResource('v1/laps', ClimbAMileController::class);
->>>>>>> Devolpment
 
 
 
