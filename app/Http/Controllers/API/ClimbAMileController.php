@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ClimbAMileResource;
+use App\Http\Resources\LapResources;
 use App\Http\Resources\MilesResource;
 use App\Models\ClimbAMile;
 use Illuminate\Http\Request;
@@ -11,7 +12,7 @@ use Illuminate\Http\Request;
 class ClimbAMileController extends Controller
 {
     public function index(){
-        return new MilesResource(ClimbAMile::all());
+        return new LapResources(ClimbAMile::all());
     }
 
     public function show($id) {

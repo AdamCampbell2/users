@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class MilesResource extends JsonResource
+class LapResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -14,8 +14,14 @@ class MilesResource extends JsonResource
      */
     public function toArray($request)
     {
-        return[
-        'data'=>ClimbAMileResource::collection($this)
-        ];
+        return [
+            'type' => 'laps',
+            'id'=> $this->id,
+            'attributes'=>[
+                'user_id'=>$this->user_id,
+                'laps'=>$this->laps,
+               
+                ]
+            ];
     }
 }

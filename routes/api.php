@@ -25,6 +25,10 @@ use App\Models\ClimbAMile;
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::prefix('v1')->group(function(){
         Route::apiResource('users', UserController::class);
+
+        Route::apiResource('laps', ClimbAMileController::class);
+       // Route::apiResource('laps', ClimbAMileController::class);
+
     });
 
 
@@ -34,7 +38,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
 });
 
 Route::apiResource('v1/routes', ApiClimbingRoutes::class);
-Route::apiResource('v1/laps', ClimbAMileController::class);
 
 
 
