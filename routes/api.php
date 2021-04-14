@@ -56,7 +56,7 @@ Route::post('v1/user/login', function (Request $request) {
         ]);
     }
 
-    return response()->json([$user->createToken($request->device_name)->plainTextToken]);
+    return response()->json($user->createToken($request->device_name)->plainTextToken);
 
    // return $user->createToken($request->device_name)->plainTextToken;
     
