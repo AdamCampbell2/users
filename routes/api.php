@@ -4,6 +4,7 @@ use App\Http\Controllers\API\ClimbAMileController;
 use App\Models\User;
 use App\Models\ClimbingRoutes;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use Laravel\Ui\Presets\React;
 use App\Http\Controllers\API\UserController;
@@ -28,7 +29,12 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::prefix('v1')->group(function(){
         Route::apiResource('users', UserController::class);
 
-        Route::apiResource('laps', ClimbAMileController::class);
+        Route::apiResource('laps', function(Request $request){
+            $user = DB::table('personal_access_tokens')->where('tokenable_id','=',$request);
+            $user_laps = DB::table('users')->where('id','=', $user);
+            return $user_laps;
+
+        });
        // Route::apiResource('laps', ClimbAMileController::class);
 
     });
