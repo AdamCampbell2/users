@@ -30,7 +30,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::apiResource('users', UserController::class);
 
         Route::apiResource('laps', function(Request $request){
-            $user = DB::table('personal_access_tokens')->where('tokenable_id','=',$request);
+            $user = DB::table('personal_access_tokens')->where('tokenable_id','=', '21');
             $user_laps = DB::table('users')->where('id','=', $user);
             return $user_laps;
 
