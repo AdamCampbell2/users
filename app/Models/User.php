@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\ClimbAMile;
 
 class User extends Authenticatable
 {
@@ -47,5 +48,10 @@ class User extends Authenticatable
     public function users()
     {
         return $this->hasMany(User::class, 'created_by');
+    }
+
+    public function laps()
+    {
+        return $this->hasMany(ClimbAMile::class);
     }
 }
