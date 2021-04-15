@@ -16,9 +16,6 @@ class ClimbAMile extends Model
         'user_id'
     ];
 
-    public function userLaps()
-    {
-        return $this->hasMany(ClimbAMile::class);
-    }
+
 
 }
