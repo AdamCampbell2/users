@@ -31,7 +31,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
         });
 
-        Route::get('laps', function(Request $request){
+        Route::get('/laps', function(Request $request){
             $user = DB::table('personal_access_tokens')->where('tokenable_id','=', '21');
             $user_laps = DB::table('users')->where('id','=', $user);
             return $user_laps;
