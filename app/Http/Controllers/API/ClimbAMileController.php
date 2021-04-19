@@ -7,7 +7,10 @@ use App\Http\Resources\ClimbAMileResource;
 use App\Http\Resources\LapResources;
 use App\Http\Resources\MilesResource;
 use App\Models\ClimbAMile;
+use GuzzleHttp\Psr7\Message;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class ClimbAMileController extends Controller
 {
@@ -15,18 +18,13 @@ class ClimbAMileController extends Controller
         return new LapResources(ClimbAMile::all());
     }
 
-    public function show($id) {
-        if(ClimbAMile::where('user_id', $id)->exits()){
-            $user = ClimbAMile::where('user_id',$id)->get()->toJson(JSON_PRETTY_PRINT);
-            return response($user, 200);
-        }else{
-            return response()->json([
-                "message" => "User Laps not found"
-            ], 404);
-        }
-    }
 
-    public function updateUserLaps(Request $request, $id) {
-        //
+    public function store(Request $request) {
+        $request['user_id'] = Auth::user()->id;
+        $lap = new ClimbAMile($request->all());
+        $lap->save();
+        return response()->json([
+            "message" =>"Lap Created"
+        ], 201);
     }
 }
