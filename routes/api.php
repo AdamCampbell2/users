@@ -33,19 +33,18 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
         //Route::apiResource('laps', ClimbAMileController::class);
 
+        Route::post('laps', [ClimbAMileController::class, 'store']);
+
 
         Route::get('laps', function(Request $request){
             return new LapResources( Auth::User()->laps()->get());
+            });
         });
 
-
-
-        });
-
-
-
-
+            
+        
     });
+
 
 
     Route::prefix('v2')->group(function(){
